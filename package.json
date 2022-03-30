@@ -1,0 +1,16 @@
+{
+  "name": "still-here",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Ismaïl NGUYEN <nguyen.ismail@gmail.com>",
+  "license": "WTFPL",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "nodemailer": "^6.7.3"
+  }
+}
