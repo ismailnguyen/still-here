@@ -25,19 +25,25 @@ function checkAcknowledgementExpiration (data, success, failure, exceptionFailur
             // And we update the counter of nbRetry
             if (daysDifference(now, lastNotifiedDate) > DAYS_INTERVAL_BETWEEN_RETRY) {
                 data.nbRetry = data.nbRetry || 0
-                
-                if (data.nbRetry < MAX_RETRY) {
+
+                if (data.nbRetry > MAX_RETRY) {
+                    failure('Too many retries, candidate is dead!')
+                } else {
                     data.nbRetry++
-    
+
                     writeDatas(
                         data,
-                        () => success('Recipient re notified!'),
-                        () => failure('Notification failure!')
+                        () => {
+                            if (data.nbRetry < MAX_RETRY) {
+                                success('Recipient notified!')
+                            }
+                            // Otherwise we proceed to inform the secondary recipient about inactivity of primary recipient
+                            else if (data.nbRetry == MAX_RETRY) {
+                                exceptionFailure()
+                            }
+                        },
+                        (error) => failure(error)
                     )
-                }
-                // Otherwise we proceed to inform the secondary recipient about inactivity of primary recipient
-                else {
-                    exceptionFailure()
                 }
             } else {
                 failure('Already notified recently, please use /check')
