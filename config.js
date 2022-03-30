@@ -18,5 +18,7 @@ module.exports = {
     FINAL_RECIPIENT_EMAIL_HTML_BODY: process.env.FINAL_RECIPIENT_EMAIL_HTML_BODY,
 
     PORT: process.env.PORT,
-    BASE_URL: process.env.BASE_URL
+    BASE_URL: process.env.BASE_URL,
+
+    MOCK_DATA: process.env.MOCK_DATA || null,
 }
