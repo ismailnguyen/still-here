@@ -1,0 +1,15 @@
+# .github/workflows/scheduled-calls.yml
+name: Trigger notification call on a CRON Schedule
+
+on:
+  schedule:
+    # Runs "everyday at 5:02pm" (see https://crontab.guru)
+    - cron: '02 17 * * *'
+jobs:
+  build:
+    name: Trigger Notification Call
+    runs-on: ubuntu-latest
+    steps:
+      - name: cURL request
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl -X GET https://still-here.herokuapp.com/notify
