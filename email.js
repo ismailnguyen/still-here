@@ -6,7 +6,7 @@ const {
     EXPEDITOR_PASSWORD,
     SMTP_HOST,
     SMTP_PORT,
-    EMAIL_SUBJECT
+    NOTIFY_EMAIL_SUBJECT
 } = require('./config')
 
 exports.sendEmail = function (success) {
@@ -22,7 +22,7 @@ exports.sendEmail = function (success) {
     transporter.sendMail({
         from: EXPEDITOR_EMAIL,
         to: EXPEDITOR_EMAIL,
-        subject: EMAIL_SUBJECT,
+        subject: NOTIFY_EMAIL_SUBJECT,
         html: '<a href="' + BASE_URL + '/acknowledge?by=' + EXPEDITOR_EMAIL + '" target="_blank" rel="noopener">Click here to acknowledge</a>'
     }).then(result => success(result))
     .catch((error) => console.error(error))
