@@ -4,7 +4,7 @@ const { MOCK_DATA } = require('./config')
 
 exports.readDatas = function (success, failure) {
     if (MOCK_DATA) {
-        return JSON.parse(MOCK_DATA)
+        return MOCK_DATA
     }
 
     fs.readFile(DATA_FILENAME, 'utf8' , (error, text) => {
