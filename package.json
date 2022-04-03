@@ -9,8 +9,10 @@
   "author": "Ismaïl NGUYEN <nguyen.ismail@gmail.com>",
   "license": "WTFPL",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "nodemailer": "^6.7.3"
+    "nodemailer": "^6.7.3",
+    "pg": "^8.7.3"
   }
 }

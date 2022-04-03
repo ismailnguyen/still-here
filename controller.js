@@ -1,5 +1,9 @@
-const { DAYS_INTERVAL_BETWEEN_NOTIFICATIONS, MAX_RETRY, DAYS_INTERVAL_BETWEEN_RETRY } = require('./config')
-const { writeDatas, readDatas } = require('./fileParser')
+const {
+    DAYS_INTERVAL_BETWEEN_NOTIFICATIONS,
+    MAX_RETRY,
+    DAYS_INTERVAL_BETWEEN_RETRY
+} = require('./config')
+const { writeDatas, readDatas } = require('./queries')
 const { sendEmail } = require('./email')
 const { inform } = require('./inCaseOfDeath')
 
@@ -54,30 +58,44 @@ function checkAcknowledgementExpiration (data, success, failure, exceptionFailur
     }
 }
 
-function updateLastNotifiedDate (content, success, failure) {
-    content.lastNotifiedDate = new Date().toISOString()
+function updateLastNotifiedDate (data, success, failure) {
+    data.lastNotifiedDate = new Date().toISOString()
 
     writeDatas(
-        content,
+        data,
         () => success('Recipient notified!'),
         () => failure('Notification failure!')
     )
 }
 
 exports.check = function (request, response) {
+    const user = request.query.user;
+
+    if (!user) {
+        response.send('Please provide a valid user')
+        return
+    }
+
     readDatas(
+        user,
         (text) => response.send(text),
         (error) => response.send(error)
     )
 }
 
 exports.notify = function (request, response) {
+    const user = request.query.user;
+
+    if (!user) {
+        response.send('Please provide a valid user')
+        return
+    }
+
     // First check that the last acknowledgement date is older than the days interval
     // Otherwise, we don't send the email
     readDatas(
-        (text) => {
-            var data = JSON.parse(text)
-
+        user,
+        (data) => {
             checkAcknowledgementExpiration(
                 data,
                 // If the last acknowledgement date is older than the days interval, we send the email
@@ -105,16 +123,22 @@ exports.notify = function (request, response) {
 }
 
 exports.acknowledge = function (request, response) {
+    const user = request.query.by;
+
+    if (!user) {
+        response.send('Please provide a valid user')
+        return
+    }
+
     readDatas(
-        (text) => {
-            var data = JSON.parse(text)
+        user,
+        (data) => {
             data.lastAcknowledgementDate = new Date().toISOString()
-            data.by = request.query.by || 'Direct URL call'
 
             writeDatas(
                 data,
                 () => response.send('Acknowledged!'),
-                (error) => res.send(error)
+                (error) => response.send(error)
             )
         },
         (error) => response.send(error)

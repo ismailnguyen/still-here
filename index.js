@@ -1,7 +1,15 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const controller = require('./controller')
 const { PORT } = require('./config');
+
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+)
 
 /*
  * Endpoint just to display the data
@@ -19,5 +27,5 @@ app.get('/notify', controller.notify)
 app.get('/acknowledge', controller.acknowledge)
 
 app.listen(PORT, () => {
-  console.log(`App now running on port ${PORT}}`)
+  console.log(`App now running on port ${PORT}`)
 })
