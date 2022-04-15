@@ -18,12 +18,12 @@ exports.readDatas = function ({email, token}, success, failure) {
   }
   
   pool.query(
-        'SELECT * FROM still_here WHERE user_email = $1 AND token = $2 FETCH FIRST 1 ROW ONLY',
+        'SELECT * FROM still_here WHERE user_email = $1 AND token = $2',
         [email, token],
         (error, results) => {
-            if (error) {
+            if (error || !results || !results.rows || !results.rows.length) {
               console.error(error)
-              failure(error.message)
+              failure(error ? error.message : 'User not found')
               return
             }
 
