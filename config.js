@@ -4,9 +4,9 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = {
-    DAYS_INTERVAL_BETWEEN_NOTIFICATIONS: process.env.DAYS_INTERVAL_BETWEEN_NOTIFICATIONS || 90,
-    MAX_RETRY: process.env.MAX_RETRY || 3,
-    DAYS_INTERVAL_BETWEEN_RETRY: process.env.DAYS_INTERVAL_BETWEEN_RETRY || 1,
+    DAYS_INTERVAL_BETWEEN_NOTIFICATIONS: parseInt(process.env.DAYS_INTERVAL_BETWEEN_NOTIFICATIONS) || 90,
+    MAX_RETRY: parseInt(process.env.MAX_RETRY) || 3,
+    DAYS_INTERVAL_BETWEEN_RETRY: parseInt(process.env.DAYS_INTERVAL_BETWEEN_RETRY) || 1,
 
     DATABASE_URL: process.env.DATABASE_URL,
     DB_SSL_MODE: process.env.DB_SSL_MODE || 'require',
