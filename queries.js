@@ -32,7 +32,10 @@ exports.readDatas = function ({email, token}, success, failure) {
                   lastAcknowledgementDate: r.last_acknowledgement_date,
                   nbRetry: r.nb_retry,
                   lastNotifiedDate: r.last_notified_date,
-                  user: r.user_email
+                  user: {
+                    email: r.user_email,
+                    token: r.token
+                  }
               }))[0])
         }
     )
