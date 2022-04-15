@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: cURL request
         # Hit the webhook endpoint to rebuild  from the "main" branch
-        run: curl -X GET https://still-here.herokuapp.com/notify?user=${{ secrets.USER_EMAIL }}&token={{ secrets.USER_TOKEN }}
+        run: curl -X GET ${{ secrets.BASE_URL }}/notify?user=${{ secrets.USER_EMAIL }}&token=${{ secrets.USER_TOKEN }}
