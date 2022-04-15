@@ -1,33 +1,30 @@
 const {
-  DB_HOST,
-  DB_USER,
-  DB_PWD,
-  DB_NAME,
-  DB_PORT,
+  DATABASE_URL,
   DB_SSL_MODE,
   DB_SSL_REJECT_UNAUTHORIZED
 } = require('./config')
 const Pool = require('pg').Pool
 const pool = new Pool({
-    user: DB_USER,
-    host: DB_HOST,
-    database: DB_NAME,
-    password: DB_PWD,
-    port: DB_PORT,
+    connectionString: DATABASE_URL,
     ssl: {
         sslmode: DB_SSL_MODE,
         rejectUnauthorized: DB_SSL_REJECT_UNAUTHORIZED
       }
 })
 
-exports.readDatas = function (user, success, failure) {
-    pool.query(
-        'SELECT * FROM still_here WHERE user_email = $1 FETCH FIRST 1 ROW ONLY',
-        [user],
+exports.readDatas = function ({email, token}, success, failure) {
+  if (!email || !token) {
+    return
+  }
+  
+  pool.query(
+        'SELECT * FROM still_here WHERE user_email = $1 AND token = $2 FETCH FIRST 1 ROW ONLY',
+        [email, token],
         (error, results) => {
             if (error) {
-                console.error(error)
-            failure(error)
+              console.error(error)
+              failure(error.message)
+              return
             }
 
             success(results.rows.map(r =>
@@ -42,19 +39,20 @@ exports.readDatas = function (user, success, failure) {
 }
 
  exports.writeDatas = function (data, success, failure) {
-    const { user, lastAcknowledgementDate, nbRetry, lastNotifiedDate } = data
+    const { user: { email, token }, lastAcknowledgementDate, nbRetry, lastNotifiedDate } = data
     
-    if (!user) {
+    if (!email || !token) {
       return
     }
 
     pool.query(
-        'UPDATE still_here SET last_acknowledgement_date = $1, nb_retry = $2, last_notified_date = $3 WHERE user_email = $4',
-        [lastAcknowledgementDate, nbRetry, lastNotifiedDate, user],
+        'UPDATE still_here SET last_acknowledgement_date = $1, nb_retry = $2, last_notified_date = $3 WHERE user_email = $4 AND token = $5',
+        [lastAcknowledgementDate, nbRetry, lastNotifiedDate, email, token],
         (error, results) => {
           if (error) {
             console.error(error)
             failure(error)
+            return
           }
           success()
         }

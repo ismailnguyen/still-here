@@ -29,7 +29,7 @@ function sendEmail (success) {
     .catch((error) => console.error(error))
 }
 
-exports.inform = function (data, finalMessage) { 
+exports.inform = function (finalMessage) { 
     console.log("see you good by (:)")
 
     sendEmail((mailSendResult) => finalMessage(mailSendResult))

@@ -69,24 +69,27 @@ function updateLastNotifiedDate (data, success, failure) {
 }
 
 exports.check = function (request, response) {
-    const user = request.query.user;
+    const { user, token } = request.query;
 
-    if (!user) {
+    if (!user || !token) {
         response.send('Please provide a valid user')
         return
     }
 
     readDatas(
-        user,
+        {
+            email: user,
+            token: token
+        },
         (text) => response.send(text),
         (error) => response.send(error)
     )
 }
 
 exports.notify = function (request, response) {
-    const user = request.query.user;
+    const { user, token } = request.query;
 
-    if (!user) {
+    if (!user || !token) {
         response.send('Please provide a valid user')
         return
     }
@@ -94,26 +97,32 @@ exports.notify = function (request, response) {
     // First check that the last acknowledgement date is older than the days interval
     // Otherwise, we don't send the email
     readDatas(
-        user,
+        {
+            email: user,
+            token: token
+        },
         (data) => {
             checkAcknowledgementExpiration(
                 data,
                 // If the last acknowledgement date is older than the days interval, we send the email
                 () => sendEmail(
+                    {
+                        email: user,
+                        token: token
+                    },
                     (mailSendResult) => {
                         console.log(mailSendResult)
 
                         // If the mail was correctly sent, we update the last notified date
                         updateLastNotifiedDate(
                             data,
-                            (success) => response.send(success),
+                            () => response.send('Email sent to ' + user + '! '),
                             (failure) => response.send(failure)
                         )
                     }
                 ),
                 (message) => response.send(message),
                 () => inform(
-                    data,
                     (finalMessage) => response.send(finalMessage)
                 )
             )
@@ -123,15 +132,18 @@ exports.notify = function (request, response) {
 }
 
 exports.acknowledge = function (request, response) {
-    const user = request.query.by;
+    const { by, token } = request.query;
 
-    if (!user) {
+    if (!by || !token) {
         response.send('Please provide a valid user')
         return
     }
 
     readDatas(
-        user,
+        {
+            email: by,
+            token: token
+        },
         (data) => {
             data.lastAcknowledgementDate = new Date().toISOString()
 

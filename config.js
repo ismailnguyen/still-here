@@ -8,11 +8,7 @@ module.exports = {
     MAX_RETRY: process.env.MAX_RETRY || 3,
     DAYS_INTERVAL_BETWEEN_RETRY: process.env.DAYS_INTERVAL_BETWEEN_RETRY || 1,
 
-    DB_HOST: process.env.DB_HOST,
-    DB_USER: process.env.DB_USER,
-    DB_PWD: process.env.DB_PWD,
-    DB_NAME: process.env.DB_NAME,
-    DB_PORT: parseInt(process.env.DB_PORT) || 5432,
+    DATABASE_URL: process.env.DATABASE_URL,
     DB_SSL_MODE: process.env.DB_SSL_MODE || 'require',
     DB_SSL_REJECT_UNAUTHORIZED: process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true' || false,
 
