@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: cURL request
-        run: curl -X GET ${{ secrets.BASE_URL }}/notify?user=${{ secrets.USER_EMAIL }}&token=${{ secrets.USER_TOKEN }}
+        run: curl -X GET "${{ secrets.BASE_URL }}/notify?user=${{ secrets.USER_EMAIL }}&token=${{ secrets.USER_TOKEN }}"
