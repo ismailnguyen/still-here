@@ -2,14 +2,14 @@
 name: Trigger notification call on a CRON Schedule
 
 on:
+  workflow_dispatch:
   schedule:
     # Runs "everyday at 5:02pm" (see https://crontab.guru)
     - cron: '02 17 * * *'
 jobs:
-  build:
+  notify:
     name: Trigger Notification Call
     runs-on: ubuntu-latest
     steps:
       - name: cURL request
-        # Hit the webhook endpoint to rebuild  from the "main" branch
         run: curl -X GET ${{ secrets.BASE_URL }}/notify?user=${{ secrets.USER_EMAIL }}&token=${{ secrets.USER_TOKEN }}
