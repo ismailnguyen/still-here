@@ -165,6 +165,7 @@ exports.acknowledge = function (request, response) {
         },
         (data) => {
             data.lastAcknowledgementDate = new Date().toISOString()
+            data.nbRetry = 0 // Reset the counter of nbRetry if user acknowledged
 
             writeDatas(
                 data,
