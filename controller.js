@@ -110,7 +110,7 @@ async function updateLastNotifiedDate (data) {
 
 exports.check = async function (user, token) {
     if (!user || !token) {
-        throw 'Please provide a valid user'
+        return 'Please provide a valid user'
     }
 
     try {
@@ -131,13 +131,13 @@ exports.check = async function (user, token) {
         }
     }
     catch (error) {
-        throw error
+        return error
     }
 }
 
 exports.notify = async function (user, token) {
     if (!user || !token) {
-        throw 'Please provide a valid user'
+        return 'Please provide a valid user'
     }
 
     try {
@@ -170,7 +170,7 @@ exports.notify = async function (user, token) {
 
 exports.acknowledge = async function (user, token) {
     if (!user || !token) {
-        throw 'Please provide a valid user'
+        return 'Please provide a valid user'
     }
 
     try {
@@ -184,10 +184,10 @@ exports.acknowledge = async function (user, token) {
             return 'Acknowledged!'
         }
         catch (error) {
-            throw error
+            return error
         }
     }
     catch (error) {
-        throw error
+        return error
     }
 }
