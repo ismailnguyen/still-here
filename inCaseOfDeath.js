@@ -10,7 +10,7 @@ const {
     FINAL_RECIPIENT_EMAIL_HTML_BODY
 } = require('./config')
 
-function sendEmail (success) {
+async function sendEmail () {
     const transporter = nodemailer.createTransport({
         host: SMTP_HOST,
         port: SMTP_PORT,
@@ -20,17 +20,21 @@ function sendEmail (success) {
         }
     })
 
-    transporter.sendMail({
-        from: EXPEDITOR_EMAIL,
-        to: FINAL_RECIPIENT_RECIPIENT_EMAIL,
-        subject: FINAL_RECIPIENT_EMAIL_SUBJECT,
-        html: FINAL_RECIPIENT_EMAIL_HTML_BODY
-    }).then(result => success(result))
-    .catch((error) => console.error(error))
+    try {
+        return await transporter.sendMail({
+            from: EXPEDITOR_EMAIL,
+            to: FINAL_RECIPIENT_RECIPIENT_EMAIL,
+            subject: FINAL_RECIPIENT_EMAIL_SUBJECT,
+            html: FINAL_RECIPIENT_EMAIL_HTML_BODY
+        })
+    }
+    catch(error) {
+        console.error(error)
+    }
 }
 
-exports.inform = function (finalMessage) { 
+exports.inform = async function () { 
     console.log("see you good by (:)")
 
-    sendEmail((mailSendResult) => finalMessage(mailSendResult))
+    return await sendEmail()
 }

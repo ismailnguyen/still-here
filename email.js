@@ -9,7 +9,7 @@ const {
     NOTIFY_EMAIL_SUBJECT
 } = require('./config')
 
-exports.sendEmail = function ({ email, token }, success) {
+exports.sendEmail = async function (email, token) {
     const transporter = nodemailer.createTransport({
         host: SMTP_HOST,
         port: SMTP_PORT,
@@ -19,11 +19,15 @@ exports.sendEmail = function ({ email, token }, success) {
         }
     })
 
-    transporter.sendMail({
-        from: EXPEDITOR_EMAIL,
-        to: email,
-        subject: NOTIFY_EMAIL_SUBJECT,
-        html: `<a href="${ BASE_URL }/acknowledge?by=${ email }&token=${ token }" target="_blank" rel="noopener">Click here to acknowledge</a>`
-    }).then(result => success())
-    .catch((error) => console.error(error))
+    try {
+        return await transporter.sendMail({
+            from: EXPEDITOR_EMAIL,
+            to: email,
+            subject: NOTIFY_EMAIL_SUBJECT,
+            html: `<a href="${ BASE_URL }/acknowledge?by=${ email }&token=${ token }" target="_blank" rel="noopener">Click here to acknowledge</a>`
+        })
+    }
+    catch (error) {
+        throw error
+    }
 }
