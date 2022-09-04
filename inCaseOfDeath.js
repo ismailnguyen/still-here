@@ -36,5 +36,5 @@ async function sendEmail () {
 exports.inform = async function () { 
     console.log("see you good by (:)")
 
-    return await sendEmail()
+    return JSON.stringify(await sendEmail())
 }

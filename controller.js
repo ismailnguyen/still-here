@@ -35,10 +35,9 @@ function isMaxRetryExceeded (nbRetry) {
     return nbRetry > parseInt(MAX_RETRY)
 }
 
-async function isAcknowledgementExpired (data) {
+function isAcknowledgementExpired (data) {
     const lastAcknowledgementDate = new Date(data.lastAcknowledgementDate)
     const lastNotifiedDate = new Date(data.lastNotifiedDate)
-    const now = new Date()
 
     // We resend an acknowledgement link by email only if the interval since the previous
     // acknowledgement exceeded DAYS_INTERVAL_BETWEEN_NOTIFICATIONS days
@@ -57,37 +56,34 @@ async function isAcknowledgementExpired (data) {
         }
     }
 
-    // If last acknowledgment date is before the last notification date, we can send notification
-    if (daysDifference(lastAcknowledgementDate, lastNotifiedDate) <= 0) {
-        /*
-        * From here there are two cases:
-        * - max retry reached => notify secondary recipient that the primary recipient is inactive
-        * - max retry not reached => retry notification to primary recipient
-        */
+    /*
+    * From here there are two cases:
+    * - max retry reached => notify secondary recipient that the primary recipient is inactive
+    * - max retry not reached => retry notification to primary recipient
+    */
 
-        // Use 0 as default value if this value wasn't initialized yet
-        data.nbRetry = data.nbRetry || 0
+    // Use 0 as default value if this value wasn't initialized yet
+    data.nbRetry = data.nbRetry || 0
 
-        // If max retry is reached it means that the primary recipient was already inactive
-        // Final destination was already done
-        if (isMaxRetryExceeded(data.nbRetry)) {
-            return {
-                result: false,
-                message: 'Too many retries, candidate is dead!'
-            } 
-        }
+    // If max retry is reached it means that the primary recipient was already inactive
+    // Final destination was already done
+    if (isMaxRetryExceeded(data.nbRetry)) {
+        return {
+            result: false,
+            message: 'Too many retries, candidate is dead!'
+        } 
+    }
 
-        // Otherwise we proceed to inform the secondary recipient about inactivity of primary recipient
-        if (isMaxRetryReached(data.nbRetry)) {
-            throw 'Exceptional failure: primary recipient inactif, will inform secondary recipient'
-        }
+    // Otherwise we proceed to inform the secondary recipient about inactivity of primary recipient
+    if (isMaxRetryReached(data.nbRetry)) {
+        throw 'Exceptional failure: primary recipient inactif, will inform secondary recipient'
+    }
 
-        // Max retry not reached
-        // Happy path: Acknowledgement date expired, notify primary recipient
-        if (isMaxRetryNotReached(data.nbRetry)) {
-            return {
-                result: true
-            }
+    // Max retry not reached
+    // Happy path: Acknowledgement date expired, notify primary recipient
+    if (isMaxRetryNotReached(data.nbRetry)) {
+        return {
+            result: true
         }
     }
 }
@@ -141,30 +137,38 @@ exports.notify = async function (user, token) {
     }
 
     try {
-        // First check that the last acknowledgement date is older than the days interval
-        // Otherwise, we don't send the email
         const data = await readDatas( user, token)
-
-        const acknowledgementExpired = isAcknowledgementExpired(data)
-        // If the last acknowledgement date is older than the days interval, we send the email
-        if (acknowledgementExpired && acknowledgementExpired.result) {
-            const mailSendResult = await sendEmail(user, token)
-            console.log(mailSendResult)
-
-            // If the mail was correctly sent, we update the last notified date
-            try {
-                await updateLastNotifiedDate(data)
-                
-                return 'Email sent to ' + user + '! '
-            } catch (error) {
-                return error
+    
+        try {
+            // First check that the last acknowledgement date is older than the days interval
+            // Otherwise, we don't send the email
+            const acknowledgementExpired = isAcknowledgementExpired(data)
+            console.log('acknowledgementExpired', acknowledgementExpired)
+            // If the last acknowledgement date is older than the days interval, we send the email
+            if (acknowledgementExpired && acknowledgementExpired.result) {
+                const mailSendResult = await sendEmail(user, token)
+                console.log(mailSendResult)
+    
+                // If the mail was correctly sent, we update the last notified date
+                try {
+                    await updateLastNotifiedDate(data)
+                    
+                    return 'Email sent to ' + user + '! '
+                } catch (error) {
+                    return error
+                }
+            } else if (acknowledgementExpired && acknowledgementExpired.message) {
+                return acknowledgementExpired.message
             }
-        } else if (acknowledgementExpired && acknowledgementExpired.message) {
-            return acknowledgementExpired.message
+        }
+        catch (destinationFinal) {
+            await updateLastNotifiedDate(data)
+            
+            return inform()
         }
     }
-    catch (destinationFinal) {
-        return inform()
+    catch (error) {
+        return error
     }
 }
 

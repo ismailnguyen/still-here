@@ -6,6 +6,6 @@ const { check } = require('../../controller')
 exports.handler = async function (event, context) {
     return {
         statusCode: 200,
-        body: await check(event.queryStringParameters.user, event.queryStringParameters.token)
+        body: JSON.stringify(await check(event.queryStringParameters.user, event.queryStringParameters.token))
     }
 };
