@@ -1,0 +1,123 @@
+<mxfile host="app.diagrams.net" modified="2024-12-07T10:38:10.077Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" etag="33gfMr-KsVQGpnx_zFtd" version="24.3.1" type="device">
+  <diagram name="Page-1" id="OaDpxukLBGR_qcgKp_Uy">
+    <mxGraphModel dx="1910" dy="683" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-1" value="Github" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;verticalAlign=top;align=center;strokeWidth=4;dashed=1;textShadow=0;glass=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="290" width="210" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-2" value="Aiven" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;fontColor=#000000;strokeColor=#C73500;verticalAlign=top;align=center;strokeWidth=3;dashed=1;textShadow=0;glass=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="450" width="210" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-3" value="Netlify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;verticalAlign=top;align=center;dashed=1;strokeWidth=3;textShadow=0;glass=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="290" width="210" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-4" value="Github Actions" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="340" width="170" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-5" value="Functions as Service" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="290" y="340" width="170" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-6" value="Aiven for PostgreSQL" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="670" y="500" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-7" target="DIPC17rdo_iZZTLB-W7h-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-7" target="DIPC17rdo_iZZTLB-W7h-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-7" value="Notify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="315" y="395" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-8" target="DIPC17rdo_iZZTLB-W7h-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-12" value="cURL /notify user" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DIPC17rdo_iZZTLB-W7h-11">
+          <mxGeometry x="-0.1719" relative="1" as="geometry">
+            <mxPoint x="30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-8" value="Trigger notification call on a CRON Schedule" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-85" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-10" value="Still here activities" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="690" y="540" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-13" value="Mailbox" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;verticalAlign=top;align=center;dashed=1;strokeWidth=3;textShadow=0;glass=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="600" width="210" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-14" target="DIPC17rdo_iZZTLB-W7h-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-14" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-300" y="680" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-19" target="DIPC17rdo_iZZTLB-W7h-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-19" value="Check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="315" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-20" target="DIPC17rdo_iZZTLB-W7h-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-20" value="Acknowledge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="315" y="660" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-24" value="Inbox" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="650" width="170" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-25" target="DIPC17rdo_iZZTLB-W7h-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-31" value="HTTP /acknowledge user" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DIPC17rdo_iZZTLB-W7h-26">
+          <mxGeometry x="-0.3032" y="4" relative="1" as="geometry">
+            <mxPoint x="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-25" value="Email with link to acknowledge still alive" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-85" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-7" target="DIPC17rdo_iZZTLB-W7h-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="375" y="530" />
+              <mxPoint x="-120" y="530" />
+              <mxPoint x="-120" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-32" value="Email with link to /acknowledge" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DIPC17rdo_iZZTLB-W7h-28">
+          <mxGeometry x="-0.2604" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1" source="DIPC17rdo_iZZTLB-W7h-33" target="DIPC17rdo_iZZTLB-W7h-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-33" value="still_here" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=default;" vertex="1" parent="1">
+          <mxGeometry x="645" y="740" width="210" height="180" as="geometry">
+            <mxRectangle x="700" y="740" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-34" value="last_acknowledgment_date" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="DIPC17rdo_iZZTLB-W7h-33">
+          <mxGeometry y="30" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-35" value="nb_retry" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="DIPC17rdo_iZZTLB-W7h-33">
+          <mxGeometry y="60" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-39" value="last_notified_date" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="DIPC17rdo_iZZTLB-W7h-33">
+          <mxGeometry y="90" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-38" value="user_email" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="DIPC17rdo_iZZTLB-W7h-33">
+          <mxGeometry y="120" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DIPC17rdo_iZZTLB-W7h-36" value="token" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="DIPC17rdo_iZZTLB-W7h-33">
+          <mxGeometry y="150" width="210" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
