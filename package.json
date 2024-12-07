@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Ismaïl NGUYEN <nguyen.ismail@gmail.com>",
+  "author": "Ismaïl NGUYEN <dev@ismailnguyen.com>",
   "license": "WTFPL",
   "dependencies": {
     "body-parser": "^1.20.0",
