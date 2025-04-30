@@ -2,7 +2,6 @@
 name: Trigger notification call on a CRON Schedule
 
 on:
-  workflow_dispatch:
   schedule:
     # Runs "everyday at 5:02pm" (see https://crontab.guru)
     - cron: '02 17 * * *'
@@ -12,7 +11,14 @@ jobs:
     name: Trigger Notification Call
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: cURL request
         run: curl -X GET "${{ secrets.BASE_URL }}/notify?user=${{ secrets.USER_EMAIL }}&token=${{ secrets.USER_TOKEN }}"
-      - uses: gautamkrishnar/keepalive-workflow@master # step to keep alive the cron action
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1 # step to keep alive the cron action
